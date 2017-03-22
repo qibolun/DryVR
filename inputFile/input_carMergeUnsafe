@@ -1,0 +1,7 @@
+vertex:[("Const;Const"),("Acc1;Acc1"),("Dec;Acc1"),("TurnRight;Const"),("Const;Const"),("Acc1;Const"),('TurnRight;Const')]
+edge:[(0,1),(1,2),(2,3),(3,4),(0,5),(5,6),(6,4)]
+transtime:[(1,2),(5,6),(5,6),(10,12),(1,2),(5,6),(10,12)]
+initialSet:[[-5.0,0.0,0.0,1.0,0.0,-8.8,0.0,1.0],[-5.0,0.0,0.0,1.0,0.0,-8.7,0.0,1.0]]
+unsafeSet:@Allmode:And(v1-v5<2,v2-v6<2,v5-v1<2,v6-v2<2)
+timeHorizon:50
+directory:./examples/two_cars_overtake

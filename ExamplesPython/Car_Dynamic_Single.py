@@ -104,7 +104,7 @@ def Car_simulate(Mode,initial,time_bound):
 		turn_indicator = 'Straight'
 		acc = 0.2
 		acc_time = 0.0
-	elif Mode == 'Dec': 
+	elif (Mode == 'Dec') or (Mode == 'Brk'): 
 		turn_indicator = 'Straight'
 		acc = -0.2
 		acc_time = 0.0

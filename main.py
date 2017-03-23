@@ -22,7 +22,7 @@ g = buildGraph(vertex,edge,transtime,timeHorizon)
 
 
 #tunning parameter
-randomNum = 0
+randomNum = 5
 
 initialSetLow = initialSet[0]
 initialSetHigh = initialSet[1]
@@ -75,9 +75,8 @@ while stack:
 	curInit = stack.pop()
 	print ("------cur init set-------")
 	curInit.printSet()
-	tubeDic = ReachTubeSP(g,[curInit.lowerbound,curInit.upperbound],timeHorizon)
+	tubeDic = ReachTube(g,[curInit.lowerbound,curInit.upperbound],timeHorizon)
 	safe = 1
-	exit()
 	for key in tubeDic:
 		curTube = tubeDic[key]
 		safety = checker.checkReachTube(curTube,key)

@@ -67,7 +67,7 @@ end1 = time.time()
 #start Checking for the system
 stack = [InitialSet(initialSetLow,initialSetHigh)]
 start2 = time.time()
-
+reach = []
 print "-------------------------------------------------------------------"
 print "verification begin"
 
@@ -75,7 +75,7 @@ while stack:
 	curInit = stack.pop()
 	print ("------cur init set-------")
 	curInit.printSet()
-	tubeDic = ReachTube(g,[curInit.lowerbound,curInit.upperbound],timeHorizon)
+	tubeDic,curReachFile = ReachTube(g,[curInit.lowerbound,curInit.upperbound],timeHorizon)
 	safe = 1
 	for key in tubeDic:
 		curTube = tubeDic[key]
@@ -114,10 +114,16 @@ while stack:
 				stack.append(initOne)
 				stack.append(initTwo)
 			refineCounter+=1
+	else:
+		reach.append(curReachFile)
 
 
 end2 = time.time()
-
+f = open('output/reachTube.txt','w')
+for tube in reach:
+	for line in tube:
+		f.write(line)
+f.close()
 print ("System is Safe!")
 print ("System has been refined for %d Times" % refineTime)
 print ("Simulation safety check is %f" % (float(end1) - float(start1)))

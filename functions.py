@@ -137,7 +137,7 @@ def ReachTube(g,Initial_Set,Time_horizon):
 	Remain_Time = Time_horizon
 	breakflag = False
 	modeSwitchDic = {}
-	f = open('output/reachTube.txt','w')
+	reachfile = []
 	while Remain_Time > 0:
 		print("-----------------------------------------------------------------")
 		Current_Vertex = Compute_Order[vertex_order]
@@ -172,7 +172,7 @@ def ReachTube(g,Initial_Set,Time_horizon):
 			transite_time_max = max(transite_times_max)
 			transite_time_max = float(min(transite_time_max,Remain_Time))
 
-		f.write('% '+g.vs[Current_Vertex]['name']+' '+modeSwitchDic[Current_Vertex]+'\n')
+		reachfile.append('% '+g.vs[Current_Vertex]['name']+' '+modeSwitchDic[Current_Vertex]+'\n')
 
 		if len(Init_Values[Current_Vertex][0]) == 0:
 			print("Vertex order dismatch! The initial value for current vertex is unknown!")
@@ -209,9 +209,11 @@ def ReachTube(g,Initial_Set,Time_horizon):
 					retval[g.vs[Current_Vertex]['name']] += Current_reachtube
 
 				for t in Current_reachtube:
+					curline = ''
 					for val in t:
-						f.write(str(val)+' ')
-					f.write('\n')
+						curline +=str(val)+' '
+					curline += '\n'
+					reachfile.append(curline)
 				# print("Finish Simulating for Mode %s" % (g.vs[Current_Vertex]['name']))
 
 				print("The discrepancy function for current mode is",k,gamma)
@@ -246,8 +248,8 @@ def ReachTube(g,Initial_Set,Time_horizon):
 			Remain_Time = 0
 		# print 'name is ', g.vs['name']
 		# print 'remainTime is ',g.vs["remainTime"]
-	f.close()
-	return retval
+	
+	return retval,reachfile
 
 
 def ReachTubeSP(g,Initial_Set,Time_horizon):

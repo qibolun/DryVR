@@ -7,6 +7,7 @@ file = open('output/reachTube.txt','r')
 
 assert len(sys.argv) == 2, "Error, No dimension specified, Usage: python tubePlotter.py varNum"
 dim = int(sys.argv[-1])
+totalDim = 0
 curMode = ''
 tubeDic = {}
 for line in file:
@@ -17,6 +18,11 @@ for line in file:
 			tubeDic[curMode] = []
 	else:
 		tubeDic[curMode].append([float(val) for val in line])
+		totalDim = len(tubeDic[curMode][0])
+
+if dim>= totalDim:
+	print "Invalid dimension number, plotter halt"
+	exit()
 
 
 

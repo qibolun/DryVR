@@ -28,5 +28,5 @@ cd ..
 pip install glpk
 export LD_LIBRARY_PATH=/usr/local/lib
 apt-get install python-cairo
-apt-get install -y python3-tk
+apt-get install -y python-tk
 

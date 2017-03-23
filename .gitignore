@@ -8,3 +8,5 @@
 **/*.mexa64
 **/*.pyc
 **/*.png
+output/unsafeSim
+

@@ -1,1 +1,1 @@
-This is output Folder
+This is the output folder

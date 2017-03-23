@@ -352,7 +352,7 @@ class uniformChecker():
 			lower = tube[i]
 			upper = tube[i+1]
 			if self._checkIntersection(lower,upper,mode):
-				print "intersect at mode ",mode, lower,upper
+				#print "intersect at mode ",mode, lower,upper
 				if self._checkContainment(lower,upper,mode):
 					return -1
 				else:

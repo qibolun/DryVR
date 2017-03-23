@@ -1,8 +1,10 @@
-DryVR software verification of hybrid system verification. This software is currently provided for evaluation  only with limited technical support. For details, contact the authors of the accompanying paper:
-DRYVR:Data-driven verification and compositional reasoning for automotive systems
-{cfan10,bolunqi2,mitras,vmahesh}@illinois.edu
+DryVR software of hybrid system verification. This software is currently provided for evaluation  only with limited technical support. For details, contact the authors of the accompanying paper:
 
-The tool has been tested on Ubuntu 14.04 (64 bit version)
+DRYVR:Data-driven verification and compositional reasoning for automotive systems {cfan10,bolunqi2,mitras,vmahesh}@illinois.edu
+
+Status
+======
+March 23. The tool is being tested on Ubuntu 16 (64 bit version). We will update this note when it is ready.
 
 Installation
 ============

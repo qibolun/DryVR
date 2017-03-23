@@ -9,8 +9,8 @@ fi
 apt-get install git
 apt-get install python-pip
 apt-get install -y libigraph0-dev
-pip install python-igraph
-pip install numpy sympy scipy matplotlib
+pip2 install python-igraph
+pip2 install numpy sympy scipy matplotlib
 git clone https://github.com/Z3Prover/z3.git
 cd z3
 python scripts/mk_make.py --python
@@ -25,7 +25,7 @@ cd glpk-4.39
 ./configure
 make install
 cd ..
-pip install glpk
+pip2 install glpk
 export LD_LIBRARY_PATH=/usr/local/lib
 apt-get install python-cairo
 apt-get install -y python-tk

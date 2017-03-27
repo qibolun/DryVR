@@ -49,13 +49,17 @@ The tool will print background information like the current mode, transition tim
 When the system is safe, the final result will look like
 
 System is Safe!
+
 System has been refined for * Times
+
 Simulation safety check is * (seconds)
+
 Verification safety check is * (seconds)
 
 When the system is unsafe, the final result will look like
 
 Simulation safety check is * (seconds)
+
 System Unsafe from simulation, halt verification
 
 The unsafe simulation trajectory will be stored as "unsafeSim" in the output folder.

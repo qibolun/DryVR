@@ -15,9 +15,19 @@ sudo ./installRequirement
 To install packages indepently, the following will be required:
 
 python 2.*
-python igraph
+Numpy
+Scipy
+Sympy
+Matplotlib
+python Igraph
 Z3
-glpk for python
+glpk(4.39 or ealier eversion)
+pyglpk
+python-cairo
+python tk
+gmpc
+
+We recommend to install this software on a clean installed Ubuntu 16.04.
 
 Run
 ===

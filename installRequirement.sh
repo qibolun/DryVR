@@ -19,6 +19,7 @@ make install
 cd ../..
 apt-get install glpk-utils
 apt-get install gmpc-dev
+apt-get install libgmp-dev
 wget ftp.gnu.org/gnu/glpk/glpk-4.39.tar.gz
 tar -xvzf glpk-4.39.tar.gz 
 cd glpk-4.39

@@ -36,7 +36,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="DryVR 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Contact" href="contact.html"/>
+        <link rel="next" title="Publications" href="publications.html"/>
         <link rel="prev" title="Usage" href="usage.html"/> 
 
   
@@ -95,13 +95,14 @@
 <li class="toctree-l1"><a class="reference internal" href="installtion.html">Installtion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">DryVR&#8217;s Language</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-autonomous-vehicle-benchmark">The Autonomous Vehicle Benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transition-graph">Transition Graph</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#input-interpretation">Input Interpretation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-format">Input Format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#output-interpretation">Output Interpretation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
 </ul>
 
             
@@ -167,13 +168,56 @@
             
   <div class="section" id="dryvr-s-language">
 <h1>DryVR&#8217;s Language<a class="headerlink" href="#dryvr-s-language" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-autonomous-vehicle-benchmark">
+<h2>The Autonomous Vehicle Benchmark<a class="headerlink" href="#the-autonomous-vehicle-benchmark" title="Permalink to this headline">¶</a></h2>
+<p>Due to the MATLAB license issue, we are not able to release the Simulink benchmarks we have used in the publications. We have since reproduced the ADAS and autonomous vehicle benchmark in Python and connect it with DryVR as a simulator. We are hoping to move more examples to Python in the near future.</p>
+<p>The hybrid system for a scenario is constructed by putting together several individual vehicles. The higher-level decisions (paths) followed by the vehicles are captured by the transition graphs discussed in the next session.</p>
+<p>Each vehicle has the following modes</p>
+<ul class="simple">
+<li>cruise: move forward at constant speed,</li>
+<li>speedup: constant acceleration,</li>
+<li>brake: constant (slow) deceleration,</li>
+<li>em_brake: constant (hard) deceleration.</li>
+<li>ch_left and ch_right:  the acceleration and steering are controlled in such a manner that the vehicle switches to its left (resp. right) lane in a certain amount of time.</li>
+</ul>
+<p>The mode for the entire system consists of n vehicles are the mode of each vehicle separated by semicolon. For example, cruise;ch_left means the first car is in the cuise mode, while the second car is in the ch_left mode.
+For each vehicle, we mainly analyze four variables: absolute position
+($sx$) and velocity ($vx$) orthogonal to the road direction
+($x$-axis), and absolute position ($sy$) and velocity ($vy$) along the
+road direction ($y$-axis). The throttle and steering is captured using
+the four variables.</p>
+<p>For more details, please refer to Section 2.5 of the accompanying paper.</p>
+</div>
 <div class="section" id="transition-graph">
 <h2>Transition Graph<a class="headerlink" href="#transition-graph" title="Permalink to this headline">¶</a></h2>
-<a class="reference internal image-reference" href="_images/curgraph.png"><img alt="_images/curgraph.png" class="align-right" src="_images/curgraph.png" style="width: 300.0px; height: 300.0px;" /></a>
-<p>sadwadadssa</p>
+<div class="figure align-right" id="id1">
+<a class="reference internal image-reference" href="_images/curgraph.png"><img alt="transition graph" src="_images/curgraph.png" style="width: 360.0px; height: 360.0px;" /></a>
+<p class="caption"><span class="caption-text">The transition of Automatic Emergency Braking System</span></p>
 </div>
-<div class="section" id="input-interpretation">
-<h2>Input Interpretation<a class="headerlink" href="#input-interpretation" title="Permalink to this headline">¶</a></h2>
+<p>A transition graph is a labeled, directed acyclic graph as shown on the right. The vertex labels (red nodes in the graph) specify the modes of the system, and the edge labels specify the transition time from the predecessor node to the successor node.</p>
+<p>The transition graph shown on the right defines an automatic emergency braking system. Car1 is driving ahead of Car2 on a straight lane. Initially both car1 and car2 are in the cruise mode (Const;Const). Within short amount of time ([0,0.1]s) Car1 transite into brake mode while Car2 remains in the cuise mode (Brake;Const). After [0.8,0.9]s, Car2 will react by braking as well (Brake;Brake).</p>
+<p>The transition graph will be generated automatically by DryVR and stored in the tool&#8217;s root directory as curgraph.png</p>
+</div>
+<div class="section" id="input-format">
+<h2>Input Format<a class="headerlink" href="#input-format" title="Permalink to this headline">¶</a></h2>
+<p>The input for DryVR should be like</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vertex</span><span class="p">:[</span><span class="n">transition</span> <span class="n">graph</span> <span class="n">vertex</span> <span class="n">labels</span> <span class="p">(</span><span class="n">modes</span><span class="p">)]</span>
+<span class="n">edge</span><span class="p">:[</span><span class="n">transition</span> <span class="n">graph</span> <span class="n">edges</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="n">means</span> <span class="n">there</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">directed</span> <span class="n">edge</span> <span class="kn">from</span> <span class="nn">vertex</span> <span class="n">i</span> <span class="n">to</span> <span class="n">vertex</span> <span class="n">j</span><span class="p">]</span>
+<span class="n">transtime</span><span class="p">:[</span><span class="n">transition</span> <span class="n">graph</span> <span class="n">edge</span> <span class="n">labels</span> <span class="p">(</span><span class="n">transition</span> <span class="n">times</span><span class="p">)]</span>
+<span class="n">initialSet</span><span class="p">:[</span><span class="n">two</span> <span class="n">arrays</span> <span class="n">defining</span> <span class="n">the</span> <span class="n">lower</span> <span class="ow">and</span> <span class="n">upper</span> <span class="n">bound</span> <span class="n">of</span> <span class="n">each</span> <span class="n">variable</span><span class="p">]</span>
+<span class="n">unsafeSet</span><span class="p">:</span><span class="o">@</span><span class="p">[</span><span class="n">mode</span> <span class="n">name</span><span class="p">]:[</span><span class="n">unsafe</span> <span class="n">region</span><span class="p">]</span>
+<span class="n">timeHorizon</span><span class="p">:[</span><span class="n">Time</span> <span class="n">bound</span> <span class="k">for</span> <span class="n">the</span> <span class="n">verificaiton</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Example input for the Automatic Emergency Braking System</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vertex</span><span class="p">:[</span><span class="s1">&#39;Const;Const&#39;</span><span class="p">,</span> <span class="s1">&#39;Brake;Const&#39;</span><span class="p">,</span> <span class="s1">&#39;Brake;Brake&#39;</span><span class="p">]</span>
+<span class="n">edge</span><span class="p">:[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+<span class="n">transtime</span><span class="p">:[(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)]</span>
+<span class="n">initialSet</span><span class="p">:[[</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">33.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">31.0</span><span class="p">,</span> <span class="mf">33.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">31.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]]</span>
+<span class="n">unsafeSet</span><span class="p">:</span><span class="nd">@Allmode</span><span class="p">:</span><span class="n">And</span><span class="p">(</span><span class="n">v3</span><span class="o">-</span><span class="n">v6</span><span class="o">&lt;</span><span class="mf">0.02</span><span class="p">,</span><span class="n">v6</span><span class="o">-</span><span class="n">v3</span><span class="o">&lt;</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">timeHorizon</span><span class="p">:</span><span class="mi">40</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="output-interpretation">
 <h2>Output Interpretation<a class="headerlink" href="#output-interpretation" title="Permalink to this headline">¶</a></h2>
@@ -204,7 +248,7 @@ Verification safety check is * (seconds)
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="contact.html" class="btn btn-neutral float-right" title="Contact" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="publications.html" class="btn btn-neutral float-right" title="Publications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="usage.html" class="btn btn-neutral" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

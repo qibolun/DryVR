@@ -13,5 +13,6 @@ DryVR software of hybrid system verification. This software is currently provide
    installtion
    usage
    dryvr's_language
-   contact
    publications
+   contact
+   

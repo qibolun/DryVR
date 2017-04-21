@@ -30,7 +30,7 @@ Transition Graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-.. figure:: curgraph.jpg
+.. figure:: curgraph.png
 	:scale: 60%
 	:align: right
 	:alt: transition graph
@@ -40,7 +40,7 @@ Transition Graph
 
 A transition graph is a labeled, directed acyclic graph as shown on the right. The vertex labels (red nodes in the graph) specify the modes of the system, and the edge labels specify the transition time from the predecessor node to the successor node. 
 
-The transition graph shown on the right defines an automatic emergency braking system. Car1 is driving ahead of Car2 on a straight lane. Initially both car1 and car2 are in the cruise mode (Const;Const). Within short amount of time ([0,0.1]s) Car1 transite into brake mode while Car2 remains in the cuise mode (Brake;Const). After [0.8,0.9]s, Car2 will react by braking as well (Brake;Brake).
+The transition graph shown on the right defines an automatic emergency braking system. Car1 is driving ahead of Car2 on a straight lane. Initially both car1 and car2 are in the cruise mode (Const;Const). Within short amount of time ([0,0.1]s) Car1 transite into brake mode while Car2 remains in the cuise mode (Brk;Const). After [0.8,0.9]s, Car2 will react by braking as well (Brk;Brk).
 
 The transition graph will be generated automatically by DryVR and stored in the tool's root directory as curgraph.png
 

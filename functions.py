@@ -2,7 +2,18 @@ from igraph import *
 from InOutput import *
 import random
 from Global_Disc import *
-from ExamplesPython.Car_Sim import TC_Simulate
+from __main__ import directory
+directory = directory.replace('/','.')
+
+
+try:
+	modelSim = __import__(directory)
+except:
+	print("Cannot find simulator!, system halt")
+	exit()
+
+
+
 
 #import matlab.engine
 def buildGraph(vertex,edge,transtime,Time_horizon):
@@ -71,7 +82,7 @@ def simulate(g,initialCondition,Time_horizon):
 			print("Will transite to mode %s at %f second" % (g.vs[Current_Successor]["label"], Transite_Time))
 
 		curLabel = g.vs[Current_Vertex]['label']
-		Current_Simulation = TC_Simulate(curLabel,initialCondition,Transite_Time)
+		Current_Simulation = modelSim.TC_Simulate(curLabel,initialCondition,Transite_Time)
 		
 
 		retval[g.vs[Current_Vertex]['name']] = retval.get(g.vs[Current_Vertex]['name'],[])
@@ -191,10 +202,10 @@ def ReachTube(g,Initial_Set,Time_horizon):
 				curLabel = g.vs[Current_Vertex]['label']
 			
 				traces = []
-				traces.append(TC_Simulate(curLabel,Center_trace_initial,transite_time_max))
+				traces.append(modelSim.TC_Simulate(curLabel,Center_trace_initial,transite_time_max))
 				for _ in range(Num_of_traces):
 					newInit = [random.uniform(Initial_lower_bound[ii],Initial_upper_bound[ii]) for ii in range(len(Initial_lower_bound))]
-					traces.append(TC_Simulate(curLabel,newInit,transite_time_max))
+					traces.append(modelSim.TC_Simulate(curLabel,newInit,transite_time_max))
 
 
 				k,gamma = Global_Discrepancy(curLabel,Current_Delta, 0, 2,traces)
@@ -330,10 +341,10 @@ def ReachTubeSP(g,Initial_Set,Time_horizon):
 				Initial_upper_bound = Init_LargeSet[Current_Vertex][cnt][1]
 				Center_trace_initial = Center_Initial(Init_LargeSet[Current_Vertex][cnt])
 				Current_Delta = Initial_Delta(Init_LargeSet[Current_Vertex][cnt])
-				traces.append(TC_Simulate(curLabel, Center_trace_initial, transite_time_max))
+				traces.append(modelSim.TC_Simulate(curLabel, Center_trace_initial, transite_time_max))
 				for _ in range(Num_of_traces):
 					newInit = [random.uniform(Initial_lower_bound[ii],Initial_upper_bound[ii]) for ii in range(len(Initial_lower_bound))]
-					traces.append(TC_Simulate(curLabel,newInit,transite_time_max))
+					traces.append(modelSim.TC_Simulate(curLabel,newInit,transite_time_max))
 				k,gamma = Global_Discrepancy(curLabel,Current_Delta, 0, 2, traces)
 				print("The discrepancy function for current mode is",k,gamma)
 
@@ -346,7 +357,7 @@ def ReachTubeSP(g,Initial_Set,Time_horizon):
 					Center_trace_initial = Center_Initial(Init_Values[Current_Vertex][cnt][rs])
 
 					traces = []
-					traces.append(TC_Simulate(curLabel, Center_trace_initial, transite_time_max))
+					traces.append(modelSim.TC_Simulate(curLabel, Center_trace_initial, transite_time_max))
 
 					Current_reachtube = Bloat_to_tubeNoIO(curLabel, k, gamma, Current_Delta, time_Concat[Current_Vertex][cnt][rs],traces)
 					tubeHolder.append(Current_reachtube)

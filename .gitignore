@@ -7,7 +7,6 @@
 **/*.txt
 **/*.mexa64
 **/*.pyc
-**/*.png
 **/*.eps
 output/unsafeSim
 

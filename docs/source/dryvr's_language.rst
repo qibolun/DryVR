@@ -30,7 +30,7 @@ Transition Graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-.. figure:: curgraph.png
+.. figure:: curgraph.jpg
 	:scale: 60%
 	:align: right
 	:alt: transition graph

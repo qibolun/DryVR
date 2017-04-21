@@ -160,7 +160,10 @@ def Reachtube_trunk(reachtube, time_interval):
 
 	#timeDelta = (time_interval[1]-time_interval[0])/2
 
-
+	if len(timeRange)<2:
+		print("cannot find transition block, result unknown")
+		exit()
+	
 	timeLow = timeRange[0]
 	timeHigh = timeRange[-1]
 

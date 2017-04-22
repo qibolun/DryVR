@@ -28,7 +28,7 @@ Inside your model folder, create a python initiate script. ::
 
 	vim __init__.py
 
-Then import file with function 'TC_Simulate'. ::
+Inside your initiate script, import file with function 'TC_Simulate'. ::
 	
 	from Thermostats_ODE import *
 

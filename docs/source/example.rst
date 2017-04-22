@@ -74,22 +74,33 @@ Other examples
 ^^^^^^^^^^^^^^^^^
 Next, we brief introduce other examples included in the inputFile folder and its verification results.
 
-\item[$\auto{MergeBehind}$:] 
-Initial condition:  vehicle A is in left and  vehicle B is in the right lane; initial positions and speeds are in some range;  A is in \Lmode{cruise} mode, and B is in \Lmode{cruise} or \Lmode{speedup}.
-%
-Transition graph:  Vehicle A  goes through the mode sequence \Lmode{speedup}, \Lmode{ch\_right}, \Lmode{cruise} with specified intervals of time to transit from mode to another mode. 
-%
-Requirement: A merges behind B within a time bound and maintains at least a given safe separation.
 
-\item[$\auto{MergeAhead}$:] 
-Initial condition: same as  $\auto{MergeBehind}$ with 
-except that B is in \Lmode{cruise} or \Lmode{brake} mode.
-Transition graph: same structure as  $\auto{MergeBehind}$ with different  timing parameters.
-Requirement: A merges ahead of B and maintains at least a given safe separation. 
+MergeBetween
 
-\item[$\auto{AutoPassing}$:]
-Initial condition: vehicle A behind  B in the same lane, with A in \Lmode{speedup} and B in \Lmode{cruise}; initial positions and speeds are in some range.
-Transition graph:  A goes through the mode sequence \Lmode{ch\_left}, \Lmode{speedup}, \Lmode{brake}, and  \Lmode{ch\_right}, \Lmode{cruise} with specified time intervals in each mode to complete the overtake maneuver. If B switches to
-\Lmode{speedup} before A enters \Lmode{speedup} then
-A aborts and changes back to right lane. If B switches to \Lmode{brake} before A enters \Lmode{ch\_left}, then A should adjust the time to switch to \Lmode{ch\_left} to avoid collision.
-Requirement: vehicle A overtakes B while maintaining minimal safe separation.
+Initial condition: car1, car2, car3 are all in the same lane, with car1 behind car2, car2 behind car3, and in the Const mode, initial positions and speeds are in some range.
+
+Transition graph: car1 goes through the mode sequence TurnLeft, Acc1, Dec, and TurnRight, Const with specified time intervals in each mode to overtake car2. car3 transits from Const to Acc1 then transits back to Const, so car3 is always ahead of car1.
+
+Requirement: car1 merges between car2 and car3 and any two vehicles maintain at least a given safe separation.
+
+InputFiles: input_threeCar(safe), input_threeCarUnsafe(unsafe)
+
+Merge
+
+Initial condition: car1 is in left and car2 is in the right lane; initial positions and speeds are in some range; car1 is in Const mode, and car2 is in Const mode.
+
+Transition graph:  car1 goes through the mode Acc1, TurnRight, Const with specified intervals of time to transit from mode to another mode. car2 goes through the mode Acc1 or Const, TurnRight, Const with specified intervals of time to transit from mode to another mode. Car1 will merge ahead of car2 of behind of car2 based on cars's mode transition.
+
+Requirement: car1 merges ahead or behind of car2 and maintains at least a given safe separation. 
+
+InputFiles: input_carMerge(safe), input_carMerge(unsafe)
+
+
+
+AutoPassing
+
+Initial condition: car1 behind car2 in the same lane, with car1 in Acc1 and car2 in Const; initial positions and speeds are in some range.
+
+Transition graph:  car1 goes through the mode sequence TurnLeft, Acc1, Brk, and  TurnRight, Const with specified time intervals in each mode to complete the overtake maneuver. If car2 switches to Acc1 before car1 enters Acc1 then car1 aborts and changes back to right lane. If car2 switches to Dec before car1 enters TurnLeft, then car1 should adjust the time to switch to TurnLeft to avoid collision.
+
+Requirement: car1 overtakes car2 while maintaining minimal safe separation.

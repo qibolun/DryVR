@@ -42,7 +42,8 @@ The transition graph shown on the right defines an automatic emergency braking s
 
 The transition graph will be generated automatically by DryVR and stored in the tool's root directory as curgraph.png
 
-.. _input-format-label:
+
+.. _input-format-label: 
 
 Input Format
 ^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -170,7 +170,7 @@
             
   <div class="section" id="dryvr-s-language">
 <h1>DryVR&#8217;s Language<a class="headerlink" href="#dryvr-s-language" title="Permalink to this headline">¶</a></h1>
-<p>In DryVR,  hybrid systems are modeled as as a combination of a white-box that specifies the mode switches (<a class="reference internal" href="#transition-graph-label"><span class="std std-ref">Transition Graph</span></a>) and a black-box that can  simulate the continuous evolution in each mode (<a class="reference internal" href="#black-box-label"><span class="std std-ref">Black-box Simulator</span></a>).</p>
+<p>In DryVR,  hybrid systems are modeled as a combination of a white-box that specifies the mode switches (<a class="reference internal" href="#transition-graph-label"><span class="std std-ref">Transition Graph</span></a>) and a black-box that can simulate the continuous evolution in each mode (<a class="reference internal" href="#black-box-label"><span class="std std-ref">Black-box Simulator</span></a>).</p>
 <div class="section" id="black-box-simulator">
 <span id="black-box-label"></span><h2>Black-box Simulator<a class="headerlink" href="#black-box-simulator" title="Permalink to this headline">¶</a></h2>
 <p>The black-box simulator for a (deterministic and prefix-closed) set  takes as input a mode label, an initial state <img class="math" src="_images/math/307e583980f527b3f26e1e159435e0a8d262736b.png" alt="x_0"/>, and a finite
@@ -194,7 +194,7 @@ as the simulation trajectory of the system in the given mode starting from <img 
 <p class="caption"><span class="caption-text">The transition of Automatic Emergency Braking System</span></p>
 </div>
 <p>A transition graph is a labeled, directed acyclic graph as shown on the right. The vertex labels (red nodes in the graph) specify the modes of the system, and the edge labels specify the transition time from the predecessor node to the successor node.</p>
-<p>The transition graph shown on the right defines an automatic emergency braking system. Car1 is driving ahead of Car2 on a straight lane. Initially both car1 and car2 are in the constand speed mode (Const;Const). Within short amount of time ([0,0.1]s) Car1 transite into brake mode while Car2 remains in the cuise mode (Brk;Const). After [0.8,0.9]s, Car2 will react by braking as well so both cars are in the brake mode (Brk;Brk).</p>
+<p>The transition graph shown on the right defines an automatic emergency braking system. Car1 is driving ahead of Car2 on a straight lane. Initially, both car1 and car2 are in the constant speed mode (Const;Const). Within a short amount of time ([0,0.1]s) Car1 transits into brake mode while Car2 remains in the cruise mode (Brk;Const). After [0.8,0.9]s, Car2 will react by braking as well so both cars are in the brake mode (Brk;Brk).</p>
 <p>The transition graph will be generated automatically by DryVR and stored in the tool&#8217;s root directory as curgraph.png</p>
 </div>
 <div class="section" id="input-format">
@@ -240,7 +240,7 @@ Verification safety check is * (seconds)
 <div class="section" id="advance-verify-your-own-black-box-system">
 <span id="advance-label"></span><h2>Advance: verify your own black-box system<a class="headerlink" href="#advance-verify-your-own-black-box-system" title="Permalink to this headline">¶</a></h2>
 <p>We use a very simple example of a thermostat as the starting point to show how to use DryVR to verify your own black-box system.</p>
-<p>The thermostat is a one-dimentional linear hybrid system with two modes &#8220;On&#8221; and &#8220;Off&#8221;. The only state variable is the temperature <img class="math" src="_images/math/a59f68a4202623bb859a7093f0316bf466e6f75d.png" alt="x"/>. In the &#8220;On&#8221; mode, the system dynamic is</p>
+<p>The thermostat is a one-dimensional linear hybrid system with two modes &#8220;On&#8221; and &#8220;Off&#8221;. The only state variable is the temperature <img class="math" src="_images/math/a59f68a4202623bb859a7093f0316bf466e6f75d.png" alt="x"/>. In the &#8220;On&#8221; mode, the system dynamic is</p>
 <div class="math">
 <p><img src="_images/math/5d097156266d3b1b6226a8cadf3139db4aaebc12.png" alt="\dot{x} = 0.1 x,"/></p>
 </div><p>and in the &#8220;Off&#8221; mode, the system dynamic is</p>
@@ -248,7 +248,7 @@ Verification safety check is * (seconds)
 <p><img src="_images/math/0649e1087caa1a5792006a570fd8b34da865d371.png" alt="\dot{x} = -0.1 x,"/></p>
 </div><p>As for DryVR, of course, all the information about dynamics is hidden. Instead, you need to provide the simulator function TC_Simulate as discussed in <a class="reference internal" href="#black-box-label"><span class="std std-ref">Black-box Simulator</span></a>.</p>
 <p><strong>Step 1</strong>:
-Create a folder in DryVR root directory for your new model and enter it.</p>
+Create a folder in the DryVR root directory for your new model and enter it.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">Thermostats</span>
 <span class="n">cd</span> <span class="n">Thermostats</span>
 </pre></div>
@@ -261,61 +261,61 @@ Inside your model folder, create a python script for your model.</p>
 <p><strong>Step 3</strong>: Write the TC_Simulate function in the python file Thermostats_ODE.py.</p>
 <p>For the thermostat system, one simulator function could be:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">thermo_dynamic</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">rate</span><span class="p">):</span>
-        <span class="n">dydt</span> <span class="o">=</span> <span class="n">rate</span><span class="o">*</span><span class="n">y</span>
-        <span class="k">return</span> <span class="n">dydt</span>
+    <span class="n">dydt</span> <span class="o">=</span> <span class="n">rate</span><span class="o">*</span><span class="n">y</span>
+    <span class="k">return</span> <span class="n">dydt</span>
 
 <span class="k">def</span> <span class="nf">TC_Simulate</span><span class="p">(</span><span class="n">Mode</span><span class="p">,</span><span class="n">initialCondition</span><span class="p">,</span><span class="n">time_bound</span><span class="p">):</span>
-        <span class="n">time_step</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">;</span>
-        <span class="n">time_bound</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">time_bound</span><span class="p">)</span>
-        <span class="n">initial</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>  <span class="k">for</span> <span class="n">tmp</span> <span class="ow">in</span> <span class="n">initialCondition</span><span class="p">]</span>
-        <span class="n">number_points</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">time_bound</span><span class="o">/</span><span class="n">time_step</span><span class="p">))</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">time_step</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">number_points</span><span class="p">)]</span>
-        <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">time_step</span><span class="p">:</span>
-                <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_bound</span><span class="p">)</span>
+    <span class="n">time_step</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">;</span>
+    <span class="n">time_bound</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">time_bound</span><span class="p">)</span>
+    <span class="n">initial</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>  <span class="k">for</span> <span class="n">tmp</span> <span class="ow">in</span> <span class="n">initialCondition</span><span class="p">]</span>
+    <span class="n">number_points</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">time_bound</span><span class="o">/</span><span class="n">time_step</span><span class="p">))</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">time_step</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">number_points</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">time_step</span><span class="p">:</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_bound</span><span class="p">)</span>
 
-        <span class="n">y_initial</span> <span class="o">=</span> <span class="n">initial</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y_initial</span> <span class="o">=</span> <span class="n">initial</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-        <span class="k">if</span> <span class="n">Mode</span> <span class="o">==</span> <span class="s1">&#39;On&#39;</span><span class="p">:</span>
-                <span class="n">rate</span> <span class="o">=</span> <span class="mf">0.1</span>
-        <span class="k">elif</span> <span class="n">Mode</span> <span class="o">==</span> <span class="s1">&#39;Off&#39;</span><span class="p">:</span>
-                <span class="n">rate</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span>
-        <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Wrong Mode name!&#39;</span><span class="p">)</span>
-        <span class="n">sol</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">thermo_dynamic</span><span class="p">,</span><span class="n">y_initial</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">rate</span><span class="p">,),</span><span class="n">hmax</span> <span class="o">=</span> <span class="n">time_step</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">Mode</span> <span class="o">==</span> <span class="s1">&#39;On&#39;</span><span class="p">:</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="k">elif</span> <span class="n">Mode</span> <span class="o">==</span> <span class="s1">&#39;Off&#39;</span><span class="p">:</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Wrong Mode name!&#39;</span><span class="p">)</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">thermo_dynamic</span><span class="p">,</span><span class="n">y_initial</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">rate</span><span class="p">,),</span><span class="n">hmax</span> <span class="o">=</span> <span class="n">time_step</span><span class="p">)</span>
 
-        <span class="c1"># Construct the final output</span>
-        <span class="n">trace</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
-                <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-                <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
-                <span class="n">trace</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">trace</span>
+    <span class="c1"># Construct the final output</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">trace</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trace</span>
 </pre></div>
 </div>
-<p>In this example, we use odeint simulator from Scipy, but you use any program language as long as the TC_Simulate function follows the input-output requirement:</p>
+<p>In this example, we use odeint simulator from Scipy, but you use any programming language as long as the TC_Simulate function follows the input-output requirement:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">TC_Simulate</span><span class="p">(</span><span class="n">Mode</span><span class="p">,</span><span class="n">initialCondition</span><span class="p">,</span><span class="n">time_bound</span><span class="p">)</span>
 <span class="n">Input</span><span class="p">:</span>
-        <span class="n">Mode</span> <span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">--</span> <span class="n">a</span> <span class="n">string</span> <span class="n">indicates</span> <span class="n">the</span> <span class="n">model</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">simulate</span><span class="o">.</span> <span class="n">Ex</span><span class="o">.</span> <span class="s2">&quot;On&quot;</span>
-        <span class="n">initialCondition</span> <span class="p">(</span><span class="nb">list</span> <span class="n">of</span> <span class="nb">float</span><span class="p">)</span> <span class="o">--</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">initial</span> <span class="n">condition</span><span class="o">.</span> <span class="n">Ex</span><span class="o">.</span> <span class="s2">&quot;[32.0]&quot;</span>
-        <span class="n">time_bound</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">--</span> <span class="n">a</span> <span class="nb">float</span> <span class="n">indicates</span> <span class="n">the</span> <span class="n">time</span> <span class="n">horizon</span> <span class="k">for</span> <span class="n">simulation</span><span class="o">.</span> <span class="n">EX</span><span class="o">.</span> <span class="s1">&#39;10.0&#39;</span>
+    <span class="n">Mode</span> <span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">--</span> <span class="n">a</span> <span class="n">string</span> <span class="n">indicates</span> <span class="n">the</span> <span class="n">model</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">simulate</span><span class="o">.</span> <span class="n">Ex</span><span class="o">.</span> <span class="s2">&quot;On&quot;</span>
+    <span class="n">initialCondition</span> <span class="p">(</span><span class="nb">list</span> <span class="n">of</span> <span class="nb">float</span><span class="p">)</span> <span class="o">--</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">initial</span> <span class="n">condition</span><span class="o">.</span> <span class="n">Ex</span><span class="o">.</span> <span class="s2">&quot;[32.0]&quot;</span>
+    <span class="n">time_bound</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">--</span> <span class="n">a</span> <span class="nb">float</span> <span class="n">indicates</span> <span class="n">the</span> <span class="n">time</span> <span class="n">horizon</span> <span class="k">for</span> <span class="n">simulation</span><span class="o">.</span> <span class="n">EX</span><span class="o">.</span> <span class="s1">&#39;10.0&#39;</span>
 <span class="n">Output</span><span class="p">:</span>
-        <span class="n">Trace</span> <span class="p">(</span><span class="nb">list</span> <span class="n">of</span> <span class="nb">list</span> <span class="n">of</span> <span class="nb">float</span><span class="p">)</span> <span class="o">--</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="nb">list</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">trace</span> <span class="kn">from</span> <span class="nn">simulation.</span>
-        <span class="n">Each</span> <span class="n">indices</span> <span class="n">represents</span> <span class="n">the</span> <span class="n">simulation</span> <span class="k">for</span> <span class="n">certain</span> <span class="n">time</span> <span class="n">step</span><span class="o">.</span><span class="n">Represents</span> <span class="k">as</span> <span class="p">[</span><span class="n">time</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="o">........</span><span class="p">]</span><span class="o">.</span>
-        <span class="n">Ex</span><span class="o">.</span> <span class="s2">&quot;[[0.0,32.0],[0.1,32.1],[0.2,32.2]........[10.0,34.3]]&quot;</span>
+    <span class="n">Trace</span> <span class="p">(</span><span class="nb">list</span> <span class="n">of</span> <span class="nb">list</span> <span class="n">of</span> <span class="nb">float</span><span class="p">)</span> <span class="o">--</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">lists</span> <span class="n">contain</span> <span class="n">the</span> <span class="n">trace</span> <span class="kn">from</span> <span class="nn">a</span> <span class="n">simulation</span><span class="o">.</span>
+    <span class="n">Each</span> <span class="n">index</span> <span class="n">represents</span> <span class="n">the</span> <span class="n">simulation</span> <span class="k">for</span> <span class="n">certain</span> <span class="n">time</span> <span class="n">step</span><span class="o">.</span><span class="n">Represents</span> <span class="k">as</span> <span class="p">[</span><span class="n">time</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="o">........</span><span class="p">]</span><span class="o">.</span>
+    <span class="n">Ex</span><span class="o">.</span> <span class="s2">&quot;[[0.0,32.0],[0.1,32.1],[0.2,32.2]........[10.0,34.3]]&quot;</span>
 </pre></div>
 </div>
 <p><strong>Step 4</strong>:
-Inside your model folder, create a python initiate script.</p>
+Inside your model folder, create a Python initiate script.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vim</span> <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>Inside your initiate script, import file with function &#8216;TC_Simulate&#8217;.</p>
+<p>Inside your initiate script, import file with function TC_Simulate.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Thermostats_ODE</span> <span class="k">import</span> <span class="o">*</span>
 </pre></div>
 </div>
 <p><strong>Step 5</strong>:
-Go to inputFile folder and create input file for your new model using the format discussed in <a class="reference internal" href="#input-format-label"><span class="std std-ref">Input Format</span></a>.</p>
+Go to inputFile folder and create an input file for your new model using the format discussed in <a class="reference internal" href="#input-format-label"><span class="std std-ref">Input Format</span></a>.</p>
 <p>Create a transition graph specifying the mode transitions. For example, we want the temperature to start within the range <img class="math" src="_images/math/586d9f2d0bf8bd88a1ba56a8613540065633bec8.png" alt="[75,76]"/> in the &#8220;On&#8221; mode. After <img class="math" src="_images/math/c1d7feec46252ba2d3538cfa5c71a9235802383c.png" alt="[1,1.1]"/> second, it transits to the &#8220;Off&#8221; mode, and transits back to the &#8220;On&#8221; mode after another <img class="math" src="_images/math/c1d7feec46252ba2d3538cfa5c71a9235802383c.png" alt="[1,1.1]"/> seconds. For bounded time <img class="math" src="_images/math/b7a8028fc10b9e828d9b340dc3459e6c678a38aa.png" alt="3.5s"/>, we want to check whether the temperature is above <img class="math" src="_images/math/85dd92a01545069e5720b438fa43981e71f9f41e.png" alt="90"/>.</p>
 <p>The input file can be written as:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vertex</span><span class="p">:[</span><span class="s2">&quot;On&quot;</span><span class="p">,</span><span class="s2">&quot;Off&quot;</span><span class="p">,</span><span class="s2">&quot;On&quot;</span><span class="p">]</span>

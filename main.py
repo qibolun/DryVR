@@ -1,5 +1,5 @@
 import sys
-from functions import *
+
 from classes import *
 import random
 import time
@@ -16,6 +16,10 @@ transtime = eval(f.readline().strip().split(':')[1])
 initialSet = eval(f.readline().strip().split(':')[1])
 unsafeSet = ':'.join(f.readline().strip().split(':')[1:])
 timeHorizon = float(f.readline().strip().split(':')[1])
+directory = f.readline().strip().split(':')[1]
+
+#print directory
+from functions import *
 
 
 g = buildGraph(vertex,edge,transtime,timeHorizon)

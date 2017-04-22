@@ -45,7 +45,7 @@ for key in tubeDic:
 	counter+=1
 axarr.plot()
 plt.show()
-f.savefig('reachTube.eps', format='eps', dpi=1200)
+f.savefig('reachTube.png', format='png', dpi=1200)
 	#plot x and y for car1
 
 

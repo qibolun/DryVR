@@ -157,4 +157,8 @@ texinfo_documents = [
 ]
 
 
+extensions = [
+    'sphinx.ext.imgmath',
+]
+
 

@@ -1,4 +1,4 @@
-vertex:["Acc1;Const;Const","TurnLeft;Const;Const","Acc2;Const;Acc1","Dec;Const;Acc1","TurnRight;Const;Const","Const;Const;Const"]
+vertex:["Acc1;Const;Const","TurnLeft;Const;Const","Acc1;Const;Acc1","Dec;Const;Acc1","TurnRight;Const;Const","Const;Const;Const"]
 edge:[(0,1),(1,2),(2,3),(3,4),(4,5)]
 transtime:[(5,6),(10,12),(5,6),(5,6),(10,12)]
 initialSet:[[0.0,-3.0,0.0,1.0,0.0,-15.0,0.0,1.0,0.0,-20.0,0.0,1.0],[0.0,3.0,0.0,1.0,0.0,-14.0,0.0,1.0,0.0,-16.0,0.0,1.0]]

@@ -37,6 +37,8 @@ The transition graph shown on the right defines an automatic emergency braking s
 
 The transition graph will be generated automatically by DryVR and stored in the tool's root directory as curgraph.png
 
+.. _input-format-label: 
+
 Input Format
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -48,6 +50,7 @@ The input for DryVR should be like ::
 	initialSet:[two arrays defining the lower and upper bound of each variable]
 	unsafeSet:@[mode name]:[unsafe region]
 	timeHorizon:[Time bound for the verificaiton]
+	directory:[Diirectory for your model]
 
 Example input for the Automatic Emergency Braking System ::
 
@@ -57,6 +60,7 @@ Example input for the Automatic Emergency Braking System ::
 	initialSet:[[0.0,-23.0,0.0,1.0,0.0,-15.0,0.0,1.0],[0.0,-22.8,0.0,1.0,0.0,-15.0,0.0,1.0]]
 	unsafeSet:@Allmode:And(v2-v6<3,v6-v2<3)
 	timeHorizon:5
+	directory:ExamplesPython/
 
 
 Output Interpretation

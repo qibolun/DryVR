@@ -1,0 +1,7 @@
+vertex:["On","Off","On"]
+edge:[(0,1),(1,2)]
+transtime:[(1,1.1),(1,1.1)]
+initialSet:[[75.0],[76.0]]
+unsafeSet:@Allmode:And(v1>90)
+timeHorizon:3.5
+directory:Thermostats/

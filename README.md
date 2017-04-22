@@ -14,7 +14,7 @@ sudo ./installRequirement
 
 To install packages indepently, the following will be required:
 
-python 2.*
+python 2.7
 
 Numpy
 

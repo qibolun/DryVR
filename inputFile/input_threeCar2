@@ -1,0 +1,7 @@
+vertex:["Acc1;Const;Const","TurnLeft;Const;Const","Acc2;Const;Acc1","Dec;Const;Acc1","TurnRight;Const;Const","Const;Const;Const"]
+edge:[(0,1),(1,2),(2,3),(3,4),(4,5)]
+transtime:[(5,6),(10,12),(5,6),(5,6),(10,12)]
+initialSet:[[0.0,-3.0,0.0,1.0,0.0,-17.0,0.0,1.0,0.0,-45.0,0.0,1.0],[0.0,3.0,0.0,1.0,0.0,-15.0,0.0,1.0,0.0,-36.0,0.0,1.0]]
+unsafeSet:@Allmode:Or(And(v1-v5<2,v2-v6<2,v5-v1<2,v6-v2<2),And(v1-v9<2,v2-v10<2,v9-v1<2,v10-v2<2))
+timeHorizon:50
+directory:ExamplesPython/

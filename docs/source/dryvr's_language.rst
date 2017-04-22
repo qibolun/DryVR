@@ -107,7 +107,21 @@ and in the "Off" mode, the system dynamic is
 	\dot{x} = -0.1 x,
 
 As for DryVR, of course, all the information about dynamics is hidden. Instead, you need to provide the simulator function TC\_Simulate as discussed in :ref:`black-box-label`. 
-For the thermostat system, a simulator function could be: ::
+
+**Step 1**:
+Create a folder in DryVR root directory for your new model and enter it. ::
+	
+	mkdir Thermostats
+	cd Thermostats
+
+**Step 2**:
+Inside your model folder, create a python script for your model. ::
+	
+	vim Thermostats_ODE.py
+
+**Step 3**: Write the TC\_Simulate function in the python file Thermostats_ODE.py.
+
+For the thermostat system, one simulator function could be: ::
 
 
 	def thermo_dynamic(y,t,rate):
@@ -142,9 +156,32 @@ For the thermostat system, a simulator function could be: ::
 			trace.append(tmp)
 		return trace
 
-Save the TC\_Simulate function in the folder, say Thermostats.
+In this example, we use odeint simulator from Scipy, but you use any program language as long as the TC\_Simulate function follows the input-output requirement: ::
 
-Next, you want to create a transition graph specifying the mode transitions. For example, we want the temperature to start within the range :math:`[75,76]` in the "On" mode. After :math:`[1,1.1]` second, it transits to the "Off" mode, and transits back to the "On" mode after another :math:`[1,1.1]` seconds. For bounded time :math:`3.5s`, we want to check whether the temperature is above :math:`90`.
+	TC_Simulate(Mode,initialCondition,time_bound)
+	Input:
+		Mode (string) -- a string indicates the model you want to simulate. Ex. "On"
+		initialCondition (list of float) -- a list contains the initial condition. Ex. "[32.0]"
+		time_bound (float) -- a float indicates the time horizon for simulation. EX. '10.0'
+	Output:
+		Trace (list of list of float) -- a list of list contains the trace from simulation. 
+		Each indices represents the simulation for certain time step.Represents as [time, v1, v2, ........]. 
+		Ex. "[[0.0,32.0],[0.1,32.1],[0.2,32.2]........[10.0,34.3]]"
+
+
+**Step 4**:
+Inside your model folder, create a python initiate script. ::
+
+	vim __init__.py
+
+Inside your initiate script, import file with function 'TC_Simulate'. ::
+	
+	from Thermostats_ODE import *
+
+**Step 5**:
+Go to inputFile folder and create input file for your new model using the format discussed in :ref:`input-format-label`.
+
+Create a transition graph specifying the mode transitions. For example, we want the temperature to start within the range :math:`[75,76]` in the "On" mode. After :math:`[1,1.1]` second, it transits to the "Off" mode, and transits back to the "On" mode after another :math:`[1,1.1]` seconds. For bounded time :math:`3.5s`, we want to check whether the temperature is above :math:`90`.
 
 The input file can be written as: ::
 
@@ -156,7 +193,10 @@ The input file can be written as: ::
 	timeHorizon:3.5
 	directory:Thermostats/
 
-Save the input file in the folder inputFile and name it as input_thermo. Then we run the verification algorithm using the command: ::
+Save the input file in the folder inputFile and name it as input_thermo. 
+
+**Step6**:
+Run the verification algorithm using the command: ::
 	
 	python main.py inputFile/input_thermo 
 
@@ -167,7 +207,7 @@ The system has been checked to be safe with the output: ::
 	Simulation safety check is 0.150208
 	Verification safety check is 0.116688
 
-We can ploy the reachtube using the command: ::
+We can plot the reachtube using the command: ::
 
 	python tubePlotter.py 1
 

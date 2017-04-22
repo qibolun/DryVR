@@ -9,7 +9,7 @@ The current version of installation file has been tested on a clean installed Ub
 
 To install packages indepently, the following will be required:
 
-- python 2.*
+- python 2.7
 - numpy
 - scipy
 - sympy

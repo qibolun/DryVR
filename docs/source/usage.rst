@@ -10,7 +10,7 @@ To run DryVR, please run: ::
 
 for example: ::
 
-	python main.py inputFile/input_carovertake
+	python main.py inputFile/input_AEB
 
 
 Plotter

@@ -17,7 +17,6 @@ This software is currently provided for evaluation only with limited technical s
    usage
    dryvr's_language
    example
-   create_new_model
    publications
    contact
    

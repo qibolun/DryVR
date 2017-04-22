@@ -1,34 +1,27 @@
 DryVR's Language
 =======================
 
-The Autonomous Vehicle Benchmark
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Due to the MATLAB license issue, we are not able to release the Simulink benchmarks we have used in the publications. We have since reproduced the ADAS and autonomous vehicle benchmark in Python and connect it with DryVR as a simulator. We are hoping to move more examples to Python in the near future.
-
-The hybrid system for a scenario is constructed by putting together several individual vehicles. The higher-level decisions (paths) followed by the vehicles are captured by the transition graphs discussed in the next session.
-
-Each vehicle has the following modes
-
-- cruise: move forward at constant speed, 
-- speedup: constant acceleration,
-- brake: constant (slow) deceleration,
-- em\_brake: constant (hard) deceleration.
-- ch\_left and ch\_right:  the acceleration and steering are controlled in such a manner that the vehicle switches to its left (resp. right) lane in a certain amount of time. 
-
-The mode for the entire system consists of n vehicles are the mode of each vehicle separated by semicolon. For example, cruise;ch\_left means the first car is in the cuise mode, while the second car is in the ch\_left mode.
-For each vehicle, we mainly analyze four variables: absolute position
-($sx$) and velocity ($vx$) orthogonal to the road direction
-($x$-axis), and absolute position ($sy$) and velocity ($vy$) along the
-road direction ($y$-axis). The throttle and steering is captured using
-the four variables. 
-
-For more details, please refer to Section 2.5 of the accompanying paper.
+In DryVR,  hybrid systems are modeled as as a combination of a white-box that specifies the mode switches (:ref:`transition-graph-label`) and a black-box that can  simulate the continuous evolution in each mode (:ref:`black-box-label`). 
 
 
+.. _black-box-label:
+
+Black-box Simulator
+^^^^^^^^^^^^^^^^^^^^^^^^
+The black-box simulator for a (deterministic and prefix-closed) set $\TL$
+of trajectories labeled by $\L$ is a function (or a program)
+$\simulator$ that takes as input a mode label $\ell \in \L$, an
+initial state $x_0 \in \TL_{\sf init,\ell}$, and a finite
+sequence of time points $t_1, \ldots, t_k$, and returns a sequence of
+states $\simulator(x_0,\ell,t_1), \ldots, \simulator(x_0,\ell, t_k)$
+such that there exists $\langle\tau,\ell\rangle \in \TL$ with
+$\tau.\fstate = x_0$ and for each $i\in \{1,\ldots, k\}$,
+$\simulator(x_0,\ell,t_i) = \tau(t_i)$.
+
+.. _transition-graph-label:
 
 Transition Graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-
 
 .. figure:: curgraph.png
 	:scale: 60%
@@ -40,7 +33,7 @@ Transition Graph
 
 A transition graph is a labeled, directed acyclic graph as shown on the right. The vertex labels (red nodes in the graph) specify the modes of the system, and the edge labels specify the transition time from the predecessor node to the successor node. 
 
-The transition graph shown on the right defines an automatic emergency braking system. Car1 is driving ahead of Car2 on a straight lane. Initially both car1 and car2 are in the cruise mode (Const;Const). Within short amount of time ([0,0.1]s) Car1 transite into brake mode while Car2 remains in the cuise mode (Brk;Const). After [0.8,0.9]s, Car2 will react by braking as well (Brk;Brk).
+The transition graph shown on the right defines an automatic emergency braking system. Car1 is driving ahead of Car2 on a straight lane. Initially both car1 and car2 are in the constand speed mode (Const;Const). Within short amount of time ([0,0.1]s) Car1 transite into brake mode while Car2 remains in the cuise mode (Brk;Const). After [0.8,0.9]s, Car2 will react by braking as well so both cars are in the brake mode (Brk;Brk).
 
 The transition graph will be generated automatically by DryVR and stored in the tool's root directory as curgraph.png
 
@@ -58,17 +51,18 @@ The input for DryVR should be like ::
 
 Example input for the Automatic Emergency Braking System ::
 
-	vertex:['Const;Const', 'Brake;Const', 'Brake;Brake']
-	edge:[(0, 1), (1, 2)]
-	transtime:[(0, 0.1), (0.1, 0.2)]
-	initialSet:[[-10.0, 30.0, 33.0, -10.0, 30.0, 0.0], [-10.0, 31.0, 33.1, -10.0, 31.0, 0.0]]
-	unsafeSet:@Allmode:And(v3-v6<0.02,v6-v3<0.02)
-	timeHorizon:40
+	vertex:["Const;Const","Brk;Const","Brk;Brk"]
+	edge:[(0,1),(1,2)]
+	transtime:[(0,0.1),(0.8,0.9)]
+	initialSet:[[0.0,-23.0,0.0,1.0,0.0,-15.0,0.0,1.0],[0.0,-22.8,0.0,1.0,0.0,-15.0,0.0,1.0]]
+	unsafeSet:@Allmode:And(v2-v6<3,v6-v2<3)
+	timeHorizon:5
+
 
 Output Interpretation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The tool will print background information like the current mode, transition time, initial set and discrepancy function information on the run. The final result will be printed at the last:
+The tool will print background information like the current mode, transition time, initial set and discrepancy function information on the run. The final result about safe/unsafe will be printed at the bottom.
 
 When the system is safe, the final result will look like ::
 

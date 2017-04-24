@@ -1,4 +1,4 @@
-Installtion
+Installation
 ===============
 
 To install the required packages, please run: ::

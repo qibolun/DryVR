@@ -99,7 +99,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#transition-graph">Transition Graph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#input-format">Input Format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#output-interpretation">Output Interpretation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#advanced-verify-your-own-black-box-system">Advanced: Verify your own black-box system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-tricks-verify-your-own-black-box-system">Advanced Tricks: Verify your own black-box system</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Examples</a></li>
@@ -185,13 +185,13 @@ as the simulation trajectory of the system in the given mode starting from <img 
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">t_0</span><span class="p">,</span><span class="n">variable_1</span><span class="p">(</span><span class="n">t_0</span><span class="p">),</span><span class="n">variable_2</span><span class="p">(</span><span class="n">t_0</span><span class="p">),</span><span class="o">...</span><span class="p">],[</span><span class="n">t_1</span><span class="p">,</span><span class="n">variable_1</span><span class="p">(</span><span class="n">t_1</span><span class="p">),</span><span class="n">variable_2</span><span class="p">(</span><span class="n">t_1</span><span class="p">),</span><span class="o">...</span><span class="p">],</span><span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>We provide several example simulation functions and you have to write your own if you want to verify systems that use other black-boxes. Once you create the TC_Simulate function and corresponding input file, you can run DryVR to check the safety of your system. To connect DryVR with your own black-box simulator, please refer to section <a class="reference internal" href="#advance-label"><span class="std std-ref">Advanced: Verify your own black-box system</span></a> for more details.</p>
+<p>We provide several example simulation functions and you have to write your own if you want to verify systems that use other black-boxes. Once you create the TC_Simulate function and corresponding input file, you can run DryVR to check the safety of your system. To connect DryVR with your own black-box simulator, please refer to section <a class="reference internal" href="#advance-label"><span class="std std-ref">Advanced Tricks: Verify your own black-box system</span></a> for more details.</p>
 </div>
 <div class="section" id="transition-graph">
 <span id="transition-graph-label"></span><h2>Transition Graph<a class="headerlink" href="#transition-graph" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <a class="reference internal image-reference" href="_images/curgraph.png"><img alt="transition graph" src="_images/curgraph.png" style="width: 360.0px; height: 360.0px;" /></a>
-<p class="caption"><span class="caption-text">The transition of Automatic Emergency Braking System</span></p>
+<p class="caption"><span class="caption-text">The transition of Automatic Emergency Braking (AEB) system</span></p>
 </div>
 <p>A transition graph is a labeled, directed acyclic graph as shown on the right. The vertex labels (red nodes in the graph) specify the modes of the system, and the edge labels specify the transition time from the predecessor node to the successor node.</p>
 <p>The transition graph shown on the right defines an automatic emergency braking system. Car1 is driving ahead of Car2 on a straight lane. Initially, both car1 and car2 are in the constant speed mode (Const;Const). Within a short amount of time ([0,0.1]s) Car1 transits into brake mode while Car2 remains in the cruise mode (Brk;Const). After [0.8,0.9]s, Car2 will react by braking as well so both cars are in the brake mode (Brk;Brk).</p>
@@ -237,8 +237,8 @@ Verification safety check is * (seconds)
 </div>
 <p>The unsafe simulation trajectory will be stored as &#8220;unsafeSim&#8221; in the output folder.</p>
 </div>
-<div class="section" id="advanced-verify-your-own-black-box-system">
-<span id="advance-label"></span><h2>Advanced: Verify your own black-box system<a class="headerlink" href="#advanced-verify-your-own-black-box-system" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="advanced-tricks-verify-your-own-black-box-system">
+<span id="advance-label"></span><h2>Advanced Tricks: Verify your own black-box system<a class="headerlink" href="#advanced-tricks-verify-your-own-black-box-system" title="Permalink to this headline">¶</a></h2>
 <p>We use a very simple example of a thermostat as the starting point to show how to use DryVR to verify your own black-box system.</p>
 <p>The thermostat is a one-dimensional linear hybrid system with two modes &#8220;On&#8221; and &#8220;Off&#8221;. The only state variable is the temperature <img class="math" src="_images/math/a59f68a4202623bb859a7093f0316bf466e6f75d.png" alt="x"/>. In the &#8220;On&#8221; mode, the system dynamic is</p>
 <div class="math">

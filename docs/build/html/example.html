@@ -96,8 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dryvr's_language.html">DryVR&#8217;s Language</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#a-small-example-to-get-started">A small example to get started</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#an-example-of-automatic-emergency-braking-aeb-system">An example of Automatic Emergency Braking (AEB) System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started-simple-automatic-emergency-braking">Getting started: Simple Automatic Emergency Braking</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#safety-verification-of-the-aeb-system">Safety Verification of the AEB System</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#verification-result-of-the-aeb-system">Verification Result of the AEB System</a></li>
 </ul>
@@ -173,17 +172,14 @@
             
   <div class="section" id="examples">
 <span id="example-label"></span><h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="a-small-example-to-get-started">
-<h2>A small example to get started<a class="headerlink" href="#a-small-example-to-get-started" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="an-example-of-automatic-emergency-braking-aeb-system">
-<h3>An example of Automatic Emergency Braking (AEB) System<a class="headerlink" href="#an-example-of-automatic-emergency-braking-aeb-system" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="getting-started-simple-automatic-emergency-braking">
+<h2>Getting started: Simple Automatic Emergency Braking<a class="headerlink" href="#getting-started-simple-automatic-emergency-braking" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="_images/Two_cars.png"><img alt="scenario graph" src="_images/Two_cars.png" style="width: 423.9px; height: 133.5px;" /></a>
 <p class="caption"><span class="caption-text">An illustration of Automatic Emergency Braking System</span></p>
 </div>
 <p>Consider the example an AEB as shown above:
-Car 1, Car2 are cruising down the highway with zero relative velocity and certain initial relative separation;  Car 1 suddenly switches to a braking mode and starts slowing down according to a certain deceleration profile. Irrespective of whether Car 2 is human-driven, AEB-equipped, or fully autonomous, certain amount of time elapses,  before Car 2 switches to a braking mode.</p>
-</div>
+Cars 1 and 2 are cruising down the highway with zero relative velocity and certain initial relative separation;  Car 1 suddenly switches to a braking mode and starts slowing down according, certain amount of time elapses,  before Car 2 switches to a braking mode. We are interested to analyze the severity (relative velocity) of any possible collisions.</p>
 <div class="section" id="safety-verification-of-the-aeb-system">
 <h3>Safety Verification of the AEB System<a class="headerlink" href="#safety-verification-of-the-aeb-system" title="Permalink to this headline">¶</a></h3>
 <p>The black-box of the vehicle dynamics is described in <a class="reference internal" href="#adas-label"><span class="std std-ref">The Autonomous Vehicle Benchmark</span></a>, and the transition graph of the above AEB is shown in <a class="reference internal" href="dryvr's_language.html#transition-graph-label"><span class="std std-ref">Transition Graph</span></a>. The unsafe region is that the relative distance between the two cars are too close (<img class="math" src="_images/math/60a1b194316a8347ea0de0d4133f28875b92cc3c.png" alt="|sy_1-sy_2|&lt;3"/>). The input files describing the hybrid system is shown in <a class="reference internal" href="dryvr's_language.html#input-format-label"><span class="std std-ref">Input Format</span></a>.</p>

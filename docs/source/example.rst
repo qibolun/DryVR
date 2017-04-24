@@ -3,8 +3,8 @@
 Examples
 ==============
 
-A small example: Simple Automatic Emergency Braking (AEB) 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Getting started: Simple Automatic Emergency Braking
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. figure:: Two_cars.png
 	:scale: 30%
 	:align: center

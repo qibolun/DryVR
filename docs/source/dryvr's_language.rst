@@ -33,7 +33,7 @@ Transition Graph
     :align: right
     :alt: transition graph
 
-    The transition of Automatic Emergency Braking System
+    The transition of Automatic Emergency Braking (AEB) system
 
 
 A transition graph is a labeled, directed acyclic graph as shown on the right. The vertex labels (red nodes in the graph) specify the modes of the system, and the edge labels specify the transition time from the predecessor node to the successor node. 
@@ -91,8 +91,8 @@ The unsafe simulation trajectory will be stored as "unsafeSim" in the output fol
 
 .. _advance-label:
 
-Advance: verify your own black-box system
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Advanced Tricks: Verify your own black-box system
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We use a very simple example of a thermostat as the starting point to show how to use DryVR to verify your own black-box system.
 

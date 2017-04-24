@@ -3,11 +3,8 @@
 Examples
 ==============
 
-A small example to get started
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-An example of Automatic Emergency Braking (AEB) System
---------------------------------------------------------
+A small example: Simple Automatic Emergency Braking (AEB) 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. figure:: Two_cars.png
 	:scale: 30%
 	:align: center
@@ -16,7 +13,7 @@ An example of Automatic Emergency Braking (AEB) System
 	An illustration of Automatic Emergency Braking System
 
 Consider the example an AEB as shown above:
-Car 1, Car2 are cruising down the highway with zero relative velocity and certain initial relative separation;  Car 1 suddenly switches to a braking mode and starts slowing down according to a certain deceleration profile. Irrespective of whether Car 2 is human-driven, AEB-equipped, or fully autonomous, certain amount of time elapses,  before Car 2 switches to a braking mode. 
+Cars 1 and 2 are cruising down the highway with zero relative velocity and certain initial relative separation;  Car 1 suddenly switches to a braking mode and starts slowing down according, certain amount of time elapses,  before Car 2 switches to a braking mode. We are interested to analyze the severity (relative velocity) of any possible collisions.
 
 Safety Verification of the AEB System
 ---------------------------------------

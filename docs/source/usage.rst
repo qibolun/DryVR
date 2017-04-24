@@ -33,6 +33,8 @@ For example, to plot the reachtube for :math:`sx_1`, please run ::
 
 
 
+**Note** please do not use the tubePlotter function when system is checked to be Unsafe or Unknown (when no more refinement can be used). 
 
+When system is checked to be **Unsafe**, the counter-example simulation trace is stored in the output folder as **unsafeSim**.
 
 More plot results can be found at the :ref:`example-label` page.

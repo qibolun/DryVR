@@ -2,7 +2,7 @@ DryVR for CAV Artifact Evaluation.
 
 Paper: DRYVR:Data-driven verification and compositional reasoning for automotive systems
 
-Virtual machine has Ubuntu 16.04 installed. You DON'T have to install any package or run ./installRequirement.sh because all the packages are already installed.
+Virtual machine has Ubuntu 16.04 installed. You DON'T have to install any package or run ./installRequirement.sh because all the packages are already installed. The image file is generated using Oracle VM VirtualBox.
 
 username: cav
 password: ae
@@ -28,6 +28,7 @@ We create a script to evaluate all the examples automatically in the inputFile f
 
 ./runThis.sh
 
+You should expect ~40 mins to finish all the examples.
 -------------------------------------------------------------
 To run separate examples in the inputFile folder, please run 
 
@@ -37,7 +38,7 @@ for example:
 
 python main.py inputFile/input_AEB
 
-The examples descriptions can be found in the documentation
+The examples descriptions can be found in the documentation. Please note that as the verification algorithm uses probabilistic method, the verification result may vary for different runs.
 ------------------------------------------------------------
 
 To plot the reachtube, please run:
@@ -48,5 +49,6 @@ for example:
 
 python tubePlotter.py 1
 
-Note that the dimension 0 is the local time for each mode and last dimension is the global time
+Note that dimension 0 is the local time for each mode and last dimension is the global time. 
+When the system is Unsafe or Unknown, please do not use the plotter. Otherwise, it will break or plot the result for the last example.
 

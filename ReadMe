@@ -37,8 +37,8 @@ for example:
 
 python main.py inputFile/input_AEB
 
-
--------------------------------------
+The examples descriptions can be found in the online (and Html) documentation
+------------------------------------------------------------
 To plot the reachtube, please run:
 
 python tubePlotter.py [dimension Number]

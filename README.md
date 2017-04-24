@@ -4,14 +4,12 @@ http://dryvr.readthedocs.io/en/latest/index.html
 
 Quick start
 ==================
-To run all the examples automatically in the inputFile folder, please run
--------------------------------------------------------------------------------
+We create a script to evaluate all the examples automatically in the inputFile folder. Please open DryVR folder and run 
 
 ./runThis
 
-
+-------------------------------------------------------------
 To run separate examples in the inputFile folder, please run 
-----------------------------------------------------------------
 
 python main.py inputFile/[input_file]
 
@@ -19,9 +17,9 @@ for example:
 
 python main.py inputFile/input_AEB
 
-
+The examples descriptions can be found in the online (and Html) documentation
+------------------------------------------------------------
 To plot the reachtube, please run:
----------------------------------------
 
 python tubePlotter.py [dimension Number]
 

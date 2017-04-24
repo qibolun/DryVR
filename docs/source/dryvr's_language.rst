@@ -1,19 +1,19 @@
 DryVR's Language
 =======================
 
-In DryVR,  hybrid systems are modeled as a combination of a white-box that specifies the mode switches (:ref:`transition-graph-label`) and a black-box that can simulate the continuous evolution in each mode (:ref:`black-box-label`). 
+In DryVR,  a hybrid system is modeled as a combination of a white-box that specifies the mode switches (:ref:`transition-graph-label`) and a black-box that can simulate the continuous evolution in each mode (:ref:`black-box-label`). 
 
 
 .. _black-box-label:
 
 Black-box Simulator
 ^^^^^^^^^^^^^^^^^^^^^^^^
-The black-box simulator for a (deterministic and prefix-closed) set  takes as input a mode label, an initial state :math:`x_0`, and a finite
+The black-box simulator for a (deterministic) takes as input a mode label, an initial state :math:`x_0`, and a finite
 sequence of time points :math:`t_1, \ldots, t_k`, and returns a sequence of
 states :math:`sim(mode,x_0,t_1), \ldots, sim(mode,x_0,t_k)`
 as the simulation trajectory of the system in the given mode starting from :math:`x_0` at the time points :math:`t_1, \ldots, t_k`.
 
-In DryVR, the connection with the black-box simulator is through a simulation function: ::
+DryVR uses the black-box simulator by calling the simulation function: ::
 
     TC_Simulate(Modes,initialCondition,time_bound)
 
@@ -21,7 +21,7 @@ Given the mode name "Mode", initial state "initialCondition"  and time horizon "
 
     [[t_0,variable_1(t_0),variable_2(t_0),...],[t_1,variable_1(t_1),variable_2(t_1),...],...]
 
-Once you create the TC_Simulate function and corresponding input file, you can run DryVR to check the safety of your system. To connect DryVR with your own black-box simulator, please refer to section :ref:`advance-label` for more details.
+We provide several example simulation functions and you have to write your own if you want to verify systems that use other black-boxes. Once you create the TC_Simulate function and corresponding input file, you can run DryVR to check the safety of your system. To connect DryVR with your own black-box simulator, please refer to section :ref:`advance-label` for more details.
 
 .. _transition-graph-label:
 
@@ -48,7 +48,7 @@ The transition graph will be generated automatically by DryVR and stored in the 
 Input Format
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The input for DryVR should be like ::
+The input for DryVR is of the form ::
 
     vertex:[transition graph vertex labels (modes)]
     edge:[transition graph edges, (i,j) means there is a directed edge from vertex i to vertex j]

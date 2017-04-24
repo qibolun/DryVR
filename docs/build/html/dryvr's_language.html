@@ -99,7 +99,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#transition-graph">Transition Graph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#input-format">Input Format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#output-interpretation">Output Interpretation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#advance-verify-your-own-black-box-system">Advance: verify your own black-box system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-verify-your-own-black-box-system">Advanced: Verify your own black-box system</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="example.html">Examples</a></li>
@@ -170,14 +170,14 @@
             
   <div class="section" id="dryvr-s-language">
 <h1>DryVR&#8217;s Language<a class="headerlink" href="#dryvr-s-language" title="Permalink to this headline">¶</a></h1>
-<p>In DryVR,  hybrid systems are modeled as a combination of a white-box that specifies the mode switches (<a class="reference internal" href="#transition-graph-label"><span class="std std-ref">Transition Graph</span></a>) and a black-box that can simulate the continuous evolution in each mode (<a class="reference internal" href="#black-box-label"><span class="std std-ref">Black-box Simulator</span></a>).</p>
+<p>In DryVR,  a hybrid system is modeled as a combination of a white-box that specifies the mode switches (<a class="reference internal" href="#transition-graph-label"><span class="std std-ref">Transition Graph</span></a>) and a black-box that can simulate the continuous evolution in each mode (<a class="reference internal" href="#black-box-label"><span class="std std-ref">Black-box Simulator</span></a>).</p>
 <div class="section" id="black-box-simulator">
 <span id="black-box-label"></span><h2>Black-box Simulator<a class="headerlink" href="#black-box-simulator" title="Permalink to this headline">¶</a></h2>
-<p>The black-box simulator for a (deterministic and prefix-closed) set  takes as input a mode label, an initial state <img class="math" src="_images/math/307e583980f527b3f26e1e159435e0a8d262736b.png" alt="x_0"/>, and a finite
+<p>The black-box simulator for a (deterministic) takes as input a mode label, an initial state <img class="math" src="_images/math/307e583980f527b3f26e1e159435e0a8d262736b.png" alt="x_0"/>, and a finite
 sequence of time points <img class="math" src="_images/math/07e0f7d7006933f1f612779ac3aecf313f5b6f6a.png" alt="t_1, \ldots, t_k"/>, and returns a sequence of
 states <img class="math" src="_images/math/706d7993b1e926004418817502d64bbaddd862de.png" alt="sim(mode,x_0,t_1), \ldots, sim(mode,x_0,t_k)"/>
 as the simulation trajectory of the system in the given mode starting from <img class="math" src="_images/math/307e583980f527b3f26e1e159435e0a8d262736b.png" alt="x_0"/> at the time points <img class="math" src="_images/math/07e0f7d7006933f1f612779ac3aecf313f5b6f6a.png" alt="t_1, \ldots, t_k"/>.</p>
-<p>In DryVR, the connection with the black-box simulator is through a simulation function:</p>
+<p>DryVR uses the black-box simulator by calling the simulation function:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">TC_Simulate</span><span class="p">(</span><span class="n">Modes</span><span class="p">,</span><span class="n">initialCondition</span><span class="p">,</span><span class="n">time_bound</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -185,7 +185,7 @@ as the simulation trajectory of the system in the given mode starting from <img 
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="n">t_0</span><span class="p">,</span><span class="n">variable_1</span><span class="p">(</span><span class="n">t_0</span><span class="p">),</span><span class="n">variable_2</span><span class="p">(</span><span class="n">t_0</span><span class="p">),</span><span class="o">...</span><span class="p">],[</span><span class="n">t_1</span><span class="p">,</span><span class="n">variable_1</span><span class="p">(</span><span class="n">t_1</span><span class="p">),</span><span class="n">variable_2</span><span class="p">(</span><span class="n">t_1</span><span class="p">),</span><span class="o">...</span><span class="p">],</span><span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Once you create the TC_Simulate function and corresponding input file, you can run DryVR to check the safety of your system. To connect DryVR with your own black-box simulator, please refer to section <a class="reference internal" href="#advance-label"><span class="std std-ref">Advance: verify your own black-box system</span></a> for more details.</p>
+<p>We provide several example simulation functions and you have to write your own if you want to verify systems that use other black-boxes. Once you create the TC_Simulate function and corresponding input file, you can run DryVR to check the safety of your system. To connect DryVR with your own black-box simulator, please refer to section <a class="reference internal" href="#advance-label"><span class="std std-ref">Advanced: Verify your own black-box system</span></a> for more details.</p>
 </div>
 <div class="section" id="transition-graph">
 <span id="transition-graph-label"></span><h2>Transition Graph<a class="headerlink" href="#transition-graph" title="Permalink to this headline">¶</a></h2>
@@ -199,7 +199,7 @@ as the simulation trajectory of the system in the given mode starting from <img 
 </div>
 <div class="section" id="input-format">
 <span id="input-format-label"></span><h2>Input Format<a class="headerlink" href="#input-format" title="Permalink to this headline">¶</a></h2>
-<p>The input for DryVR should be like</p>
+<p>The input for DryVR is of the form</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vertex</span><span class="p">:[</span><span class="n">transition</span> <span class="n">graph</span> <span class="n">vertex</span> <span class="n">labels</span> <span class="p">(</span><span class="n">modes</span><span class="p">)]</span>
 <span class="n">edge</span><span class="p">:[</span><span class="n">transition</span> <span class="n">graph</span> <span class="n">edges</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="n">means</span> <span class="n">there</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">directed</span> <span class="n">edge</span> <span class="kn">from</span> <span class="nn">vertex</span> <span class="n">i</span> <span class="n">to</span> <span class="n">vertex</span> <span class="n">j</span><span class="p">]</span>
 <span class="n">transtime</span><span class="p">:[</span><span class="n">transition</span> <span class="n">graph</span> <span class="n">edge</span> <span class="n">labels</span> <span class="p">(</span><span class="n">transition</span> <span class="n">times</span><span class="p">)]</span>
@@ -237,8 +237,8 @@ Verification safety check is * (seconds)
 </div>
 <p>The unsafe simulation trajectory will be stored as &#8220;unsafeSim&#8221; in the output folder.</p>
 </div>
-<div class="section" id="advance-verify-your-own-black-box-system">
-<span id="advance-label"></span><h2>Advance: verify your own black-box system<a class="headerlink" href="#advance-verify-your-own-black-box-system" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="advanced-verify-your-own-black-box-system">
+<span id="advance-label"></span><h2>Advanced: Verify your own black-box system<a class="headerlink" href="#advanced-verify-your-own-black-box-system" title="Permalink to this headline">¶</a></h2>
 <p>We use a very simple example of a thermostat as the starting point to show how to use DryVR to verify your own black-box system.</p>
 <p>The thermostat is a one-dimensional linear hybrid system with two modes &#8220;On&#8221; and &#8220;Off&#8221;. The only state variable is the temperature <img class="math" src="_images/math/a59f68a4202623bb859a7093f0316bf466e6f75d.png" alt="x"/>. In the &#8220;On&#8221; mode, the system dynamic is</p>
 <div class="math">

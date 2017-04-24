@@ -91,7 +91,7 @@ The unsafe simulation trajectory will be stored as "unsafeSim" in the output fol
 
 .. _advance-label:
 
-Advance: verify your own black-box system
+Advanced: Verify your own black-box system
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We use a very simple example of a thermostat as the starting point to show how to use DryVR to verify your own black-box system.

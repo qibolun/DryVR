@@ -5,7 +5,7 @@ http://dryvr.readthedocs.io/en/latest/index.html
 Quick start
 ==================
 To run all the examples at the same time in the inputFile folder, please run
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------------------------------------------
 
 ./runThis
 

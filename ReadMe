@@ -1,0 +1,51 @@
+Readme of DryVR for CAV Artifact Evaluation.
+
+Paper: DRYVR:Data-driven verification and compositional reasoning for automotive systems
+
+Virtual machine is Ubuntu 16.04
+
+username: cav
+password: ae
+
+--------------------------------------------------------------------------------
+Documentation of the tool can be found at:
+
+http://dryvr.readthedocs.io/en/latest/index.html
+
+We also put the Html files of the documents on the desktop in the folder Docs 
+---------------------------------------------------------------------------------
+Folders:
+
+DryVR is put on the Desktop in the folder DryVR
+
+Inside DryVR folder, the inputFile folder contains all the input files, the output folder contains
+all intermediate results and reachtubes, the rest folders contains the models and auxiliary files.
+----------------------------------------------------------------------------------------------------
+
+Get started for artifact evaluation
+========================================
+We create a script to evaluate all the examples automatically in the inputFile folder. Please open DryVR folder and run 
+
+./runThis
+
+-------------------------------------------------------------
+To run separate examples in the inputFile folder, please run 
+
+python main.py inputFile/[input_file]
+
+for example:
+
+python main.py inputFile/input_AEB
+
+
+-------------------------------------
+To plot the reachtube, please run:
+
+python tubePlotter.py [dimension Number]
+
+for example:
+
+python tubePlotter.py 1
+
+Note that the dimension 0 is local time and last dimension is global time
+

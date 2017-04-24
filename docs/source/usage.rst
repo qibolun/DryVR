@@ -18,13 +18,16 @@ Plotter
 
 After you run the our tool, a reachTube.txt file will be generated in output folder unless the model is determined unsafe during simulation test.
 
-To plot the reachtube, please run: ::
+To plot the reachtube, please run in the DryVR root directory: ::
 
 	python tubePlotter.py [dimension Number]
 
-Where dimension number indicates the dimension you want to draw. Note that the dimension 0 is local time and last dimension is global time. For example, input_AEB's inital set is [[0.0,-23.0,0.0,1.0,0.0,-15.0,0.0,1.0],[0.0,-22.8,0.0,1.0,0.0,-15.0,0.0,1.0]]. Therefore, it has 8 dimensions in total. You can choose to plot dimension from 0 to 9. Where dimension 0 is the local time and dimension 9 is global time. Dimension 1~8 is corresponding to the dimension you specify in initial set.
+Where [dimension number] is the dimension you want to plot reachtube. Note that the dimension 0 is the local time for each mode and last dimension is the global time. 
 
-for example: ::
+For example, input_AEB's has 8 dimentions: :math:`sx_1,sy_1,vx_1,vy_1,sx_2,sy_2,vx_2,vy_2` (refer :ref:`ADAS-label` for more details).
+You can choose to plot dimension from 0 to 9. Dimension 0 is the local time for each mode and dimension 9 is the global time. Dimension 1~8 corresponds to the state variables as above. 
+
+For example, to plot the reachtube for :math:`sx_1`, please run ::
 
 	python tubePlotter.py 1
 

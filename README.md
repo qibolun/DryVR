@@ -4,24 +4,24 @@ http://dryvr.readthedocs.io/en/latest/index.html
 
 Quick start
 ==================
-To run all the examples at the same time in the inputFile folder, please run
+To run all the examples automatically in the inputFile folder, please run
 -------------------------------------------------------------------------------
 
 ./runThis
 
 
 To run separate examples in the inputFile folder, please run 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------------------------------
 
 python main.py inputFile/[input_file]
 
 for example:
 
-python main.py inputFile/input_carovertake
+python main.py inputFile/input_AEB
 
 
 To plot the reachtube, please run:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------
 
 python tubePlotter.py [dimension Number]
 

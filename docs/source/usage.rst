@@ -24,7 +24,7 @@ To plot the reachtube, please run in the DryVR root directory: ::
 
 Where [dimension number] is the dimension you want to plot reachtube. Note that the dimension 0 is the local time for each mode and last dimension is the global time. 
 
-For example, input_AEB's has 8 dimentions: :math:`sx_1,sy_1,vx_1,vy_1,sx_2,sy_2,vx_2,vy_2` (refer :ref:`ADAS-label` for more details).
+For example, input_AEB's has 8 dimentions: :math:`sx_1,sy_1,vx_1,vy_1,sx_2,sy_2,vx_2,vy_2` (refer to :ref:`ADAS-label` for more details).
 You can choose to plot dimension from 0 to 9. Dimension 0 is the local time for each mode and dimension 9 is the global time. Dimension 1~8 corresponds to the state variables as above. 
 
 For example, to plot the reachtube for :math:`sx_1`, please run ::

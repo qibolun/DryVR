@@ -3,7 +3,7 @@ Installtion
 
 To install the required packages, please run: ::
 
-	sudo ./installRequirement
+	sudo ./installRequirement.sh
 
 The current version of installation file has been tested on a clean
 install of Ubuntu 16.04. If you wish to install DryVR on other versions of Linux operation system, please make sure the following packages are correctly installed.

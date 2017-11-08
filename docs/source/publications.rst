@@ -2,7 +2,7 @@ Publications
 ===============
 
 - Chuchu Fan, Bolun Qi, Sayan Mitra and Mahesh Viswanathan, `DRYVR:Data-driven verification and compositional reasoning for automotive systems <https://arxiv.org/abs/1702.06902>`.
-- Chuchu Fan, Bolun Qi, Sayan Mitra and Mahesh Viswanathan, `DRYVR:Data-driven verification and compositional reasoning for automotive systems, CAV 2017 <https://link.springer.com/chapter/10.1007%2F978-3-319-63387-9_22>`.
+- Chuchu Fan, Bolun Qi, Sayan Mitra and Mahesh Viswanathan, `DRYVR:Data-driven verification and compositional reasoning for automotive systems, CAV 2017 <https://link.springer.com/chapter/10.1007%2F978-3-319-63387-9_22>`. Video [https://www.youtube.com/watch?v=9j7KcbZx6m0]
 
-- Chuchu Fan, Bolun Qi and Sayan Mitra, `Road to safe autonomy with data and formal reasoning <https://arxiv.org/abs/1704.06406>`_, (submitted to IEEE Design & Test).
+- Chuchu Fan, Bolun Qi and Sayan Mitra, `Road to safe autonomy with data and formal reasoning <https://arxiv.org/abs/1704.06406>`_, (sTo appear in IEEE Design & Test).
 

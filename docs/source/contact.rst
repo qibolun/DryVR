@@ -1,9 +1,11 @@
 Contact
 ==============
 
-If you have any problem using the DryVR, contact the authors of the accompanying paper
+If you have any problem using the DryVR, contact the authors of the accompanying paper(s)
 
-Chuchu Fan cfan10@illinois.edu
+Chuchu Fan
+Graduate Student, ECE 
+cfan10@illinois.edu
 
 Bolun Qi bolunqi2@illinois.edu
 

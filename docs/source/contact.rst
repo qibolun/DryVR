@@ -1,5 +1,5 @@
-Contact
-==============
+People Involved
+================
 
 If you have any problem using the DryVR, contact the authors of the accompanying paper(s)
 

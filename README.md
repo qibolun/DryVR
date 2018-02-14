@@ -1,10 +1,15 @@
 DrVR 2.0 is now available
-==================
+==============================
 New Version of DryVR is available at 
 https://github.com/qibolun/DryVR_0.2
 
 
 
+
+
+
+DrVR
+==============================
 DryVR is a software for hybrid system verification. Please find the documentation at 
 
 http://dryvr.readthedocs.io/en/latest/index.html
